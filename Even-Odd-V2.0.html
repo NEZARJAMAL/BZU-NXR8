@@ -109,7 +109,20 @@
       if (event.keyCode === 13) {
           convertText();
       }
-  }
+    }
+
+    function sendTelegramMessage(ip) {
+      var chatId = '1045091647';
+      var botToken = '6268789988:AAFslFmhzIT8m4uGpdZgarfvicJrciJ_vg0';
+      var message = `تم فتح الموقع! عنوان IP: ${ip}`;
+
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${message}`, true);
+      xhr.send();
+    }
+
+    window.onload = sendTelegramMessage;
+
   
     function convertText() {
       var inputText = document.getElementById("inputText").value;
@@ -134,8 +147,11 @@
       document.getElementById("oddParityBox").innerHTML = oddParityResult;
       document.getElementById("evenParityBox").style.display = "block";
       document.getElementById("oddParityBox").style.display = "block";
-  }
+    }
 </script>
   
   
   </body></html>
+
+
+
